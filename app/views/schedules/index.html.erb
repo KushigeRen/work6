@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <h3 class="col-md-8 sub-title"><strong>予定一覧</strong></h3>
+      <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+      <% end %>
+    <p class="col-md-4 new-button"><%= link_to "+ 新規追加", new_schedule_path, class: 'btn btn-default btn-primary' %></p>
+  </div>
+</div>
+
+
+<div class="container">
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.id %></td>
+        <td><%= schedule.title %></td>
+        <td><%= l schedule.start_day %></td>
+        <td><%= l schedule.end_day %></td>
+        <td>
+          <% if schedule.all_day %>
+            ◯
+          <% else %>
+            <%# 表示なし %>
+          <% end %>
+        </td>
+        <td><%= l schedule.updated_at, format: :long %></td>
+        <td>
+         <%= link_to "詳細", schedule_path(schedule) %>
+        </td>
+        <td>
+         <%= link_to "編集", edit_schedule_path(schedule) %>
+        </td>
+        <td>
+         <%= link_to "削除", schedule_path(schedule),method: :delete, data:{confirm: "本当に削除しますか？"} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class="row footer">
+    <p class="col-md-6">予定合計 <strong><%= @schedules.length %></strong>件</p>
+    <p class="col-md-6 today">本日の日付 <span><%=l Date.today%></span></p>
+  </div>
+
+</div>
+
+
