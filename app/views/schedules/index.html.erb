@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <h3 class="col-md-8 sub-title"><strong>予定一覧</strong></h3>
-      <% if flash[:notice] %>
-        <p class="notice"><%= flash[:notice] %></p>
-      <% end %>
     <p class="col-md-4 new-button"><%= link_to "+ 新規追加", new_schedule_path, class: 'btn btn-default btn-primary' %></p>
   </div>
+  <% if flash[:notice] %>
+    <p class="notice" style="color: blue;"><%= flash[:notice] %></p>
+  <% end %>
 </div>
 
 

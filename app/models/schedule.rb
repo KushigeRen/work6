@@ -7,6 +7,6 @@ class Schedule < ApplicationRecord
 
     def inconsistent_date
         errors.add(:end_day, "は開始日より前の日付は登録できません。") unless
-        :start_day < :end_day
+        self.start_day < self.end_day
     end
 end
