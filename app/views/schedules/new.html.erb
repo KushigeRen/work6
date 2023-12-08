@@ -10,7 +10,6 @@
         <tr>
           <td><%= f.text_field :title ,placeholder: 'タイトル', class: "form-control",size:"60"%></td>
         </tr>
-
         <div class="row">
           <tr>
             <th class="col-md-6 layout"><%= f.label :start_day ,"開始日" %></th>
@@ -23,11 +22,9 @@
             <td class="col-md-6"><%= f.date_field :end_day , class: "form-control" %></td>
           </tr>
         </div>
-
         <tr>
           <td class="layout"><strong>終日  </strong><%= f.check_box :all_day %></td>
         </tr>
-        
         <div>
           <tr>
             <th class="layout"><%= f.label :memo ,"スケジュールメモ" %></th>
@@ -37,7 +34,6 @@
           </tr>
         </div>
       </table>
-
     <div>
       <ul class="button">
         <li class="list-unstyled"><%= f.submit "登録", class: 'btn btn-default btn-primary' %></li>

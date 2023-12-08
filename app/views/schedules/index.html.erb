@@ -29,23 +29,11 @@
         <td><%= schedule.title %></td>
         <td><%= l schedule.start_day %></td>
         <td><%= l schedule.end_day %></td>
-        <td>
-          <% if schedule.all_day %>
-            ◯
-          <% else %>
-            <%# 表示なし %>
-          <% end %>
-        </td>
+        <td><%= "◯" if schedule.all_day %></td>
         <td><%= l schedule.updated_at, format: :long %></td>
-        <td>
-         <%= link_to "詳細", schedule_path(schedule) %>
-        </td>
-        <td>
-         <%= link_to "編集", edit_schedule_path(schedule) %>
-        </td>
-        <td>
-         <%= link_to "削除", schedule_path(schedule),method: :delete, data:{confirm: "本当に削除しますか？"} %>
-        </td>
+        <td><%= link_to "詳細", schedule_path(schedule) %></td>
+        <td><%= link_to "編集", edit_schedule_path(schedule) %></td>
+        <td><%= link_to "削除", schedule_path(schedule),method: :delete, data:{confirm: "本当に削除しますか？"} %></td>
       </tr>
     <% end %>
   </tbody>
@@ -55,7 +43,4 @@
     <p class="col-md-6">予定合計 <strong><%= @schedules.length %></strong>件</p>
     <p class="col-md-6 today">本日の日付 <span><%=l Date.today%></span></p>
   </div>
-
 </div>
-
-

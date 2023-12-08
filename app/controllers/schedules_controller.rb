@@ -8,13 +8,13 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @schedule = Schedule.new(params.require(:schedule).permit(:title, :start_day, :end_day, :all_day, :memo))
-     if @schedule.save
+    @schedule = Schedule.new(schedule_param)
+    if @schedule.save
       flash[:notice] = "新しい予定を登録しました"
-       redirect_to schedules_path
-     else
-       render "new"
-     end
+      redirect_to schedules_path
+    else
+      render "new"
+    end
   end
 
   def show
@@ -27,12 +27,12 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
-     if @schedule.update(params.require(:schedule).permit(:title, :start_day, :end_day, :all_day, :memo))
+    if @schedule.update(schedule_param)
       flash[:notice] = "予定を編集しました"
-       redirect_to schedules_path
-     else
-       render "edit"
-     end
+      redirect_to schedules_path
+    else
+      render "edit"
+    end
   end
 
   def destroy
@@ -42,8 +42,9 @@ class SchedulesController < ApplicationController
       redirect_to schedules_path
     end
   end
-
-  def count
-    @schedules = Schedule.count
-  end
 end
+
+private
+  def schedule_param
+    params.require(:schedule).permit(:title, :start_day, :end_day, :all_day, :memo)
+  end
